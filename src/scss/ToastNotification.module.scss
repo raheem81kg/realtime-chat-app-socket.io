@@ -1,0 +1,67 @@
+@use "./variables.scss" as *;
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #222222ed 72%, #959eac); /* Add gradient with cool gray shades */
+    border: solid 2px #959eac;
+    padding: 17px 22px;
+    border-radius: 12px;
+    width: 380px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+
+    &__profile_photo {
+        flex-shrink: 0; /* Prevent the photo from shrinking */
+        height: 3.8rem;
+        width: 3.8rem;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 2px;
+        border: 2px solid #edf2f7; /* Add a yellow border for a Batman-like touch */
+    }
+
+    &__middle {
+        flex: 1;
+        color: #edf2f7;
+        max-width: 70%;
+
+        &__name {
+            font-family: "Montserrat SemiBold", sans-serif;
+            font-size: 1.33rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-transform: uppercase; /* Convert sender name to uppercase */
+        }
+
+        &__text {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.1rem;
+            word-wrap: break-word;
+            white-space: nowrap; /* Prevent text from wrapping to a new line */
+            overflow: hidden; /* Hide overflowing text */
+            text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+            font-weight: bold; /* Add bold font weight */
+        }
+    }
+
+    &__icon {
+        flex-shrink: 0; /* Prevent the icon from shrinking */
+        display: block;
+        margin-left: auto;
+        cursor: pointer;
+        background: none;
+        outline: none;
+        border: none;
+        padding: 2px;
+
+        &__svg {
+            color: #edf2f7;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

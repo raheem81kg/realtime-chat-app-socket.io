@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    /* Add styles for the "selected" class */
+    &.selected {
+        color: black;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+    }
+
+    &__unread_messages {
+        font-family: "Montserrat";
+        font-size: 0.935rem;
+        background-color: red;
+        border-radius: 50%;
+        padding: 4px 8px; /* Adjust the padding to control the size of the circular element */
+        color: white; /* Set the text color for better visibility */
+
+        /* Make the element circular by setting equal width and height */
+        width: 1.4rem;
+        height: 1.4rem;
+
+        /* Ensure the circular element takes only the required space */
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

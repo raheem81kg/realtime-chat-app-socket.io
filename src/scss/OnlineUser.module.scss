@@ -1,0 +1,23 @@
+@use "./variables.scss" as *;
+
+.container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__profile_photo {
+        height: 2.18rem;
+        width: 2.18rem;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 1rem;
+    }
+
+    &__name {
+        font-family: "Montserrat ExtraBold", sans-serif;
+        font-size: 1.175rem;
+        font-weight: 600;
+    }
+}

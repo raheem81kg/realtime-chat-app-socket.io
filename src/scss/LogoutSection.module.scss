@@ -1,0 +1,30 @@
+@use "./variables.scss" as *;
+
+.logout_container {
+    display: flex;
+    align-items: center;
+
+    &__profile_photo {
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 1.2rem;
+    }
+
+    &__name {
+        font-family: "Montserrat SemiBold", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #222;
+        text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+    }
+
+    &__icon {
+        display: block;
+        margin-left: auto;
+        cursor: pointer;
+    }
+}

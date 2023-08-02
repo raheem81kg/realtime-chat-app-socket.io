@@ -1,0 +1,260 @@
+/* Add the media query for small devices */
+/* Show the header only on screens with a width of 768px or less */
+@media (max-width: 768px) {
+    .header_container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%; /* Take up the full width of the viewport */
+        padding: 0.5rem;
+        background-color: #edf2f7;
+        border-bottom: #edf2f7 solid 1px;
+        display: flex;
+        justify-content: flex-end; /* Align the button to the right */
+        z-index: 1; /* Ensure the menu is on top of the chat content */
+    }
+
+    /* Default variant */
+    .menu_button {
+        background-color: #222;
+        color: #fff;
+        font-family: "Montserrat SemiBold", sans-serif;
+        border-radius: 0.375rem;
+        font-size: 0.93rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition-property: background-color, color;
+        transition-duration: 150ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+    }
+
+    .menu_button:hover {
+        background-color: #1f2937;
+    }
+
+    /* Active variant */
+    .menu_button:active {
+        transform: scale(0.95);
+    }
+
+    .menu_button::focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px #93c5fd; /* Equivalent to focus:ring-slate-400 */
+    }
+
+    .menu_button:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.5); /* Equivalent to focus:ring-2 */
+    }
+
+    .chat_container {
+        /* Add some padding at the top to avoid overlapping the content with the header */
+        padding-top: 3rem;
+    }
+
+    .close_sidebar {
+        color: black;
+        position: absolute;
+        top: 4%;
+        right: 8%;
+        outline: none;
+        border: none;
+        background: none;
+        padding: 2.5%;
+        cursor: pointer;
+
+        &__svg {
+            width: 1.35rem;
+            height: 1.35rem;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    /* Hide the menu on screens larger than 768px */
+    .header_container {
+        display: none;
+    }
+    .close_sidebar {
+        display: none;
+    }
+}
+
+.chat_container {
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+
+    /* Position the menu fixed on small devices */
+    @media (max-width: 768px) {
+        &__menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            min-width: 28%;
+            width: 90%;
+            z-index: 1; /* Ensure the menu is on top of the chat content */
+            overflow-y: auto; /* Allow scrolling if the menu overflows the screen height */
+            background-color: white;
+            border-right: #edf2f7 solid 1px;
+        }
+    }
+
+    &__menu {
+        min-width: 30%;
+        height: 100%;
+        padding: 1.8rem;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-right: #edf2f7 solid 1px;
+
+        &__all_messages {
+            margin-top: 10px;
+            h1 {
+                font-family: "Montserrat SemiBold", sans-serif;
+                font-size: 0.855rem;
+                margin: 30px 0 22px 0;
+                color: #4a5568;
+            }
+
+            li {
+                font-family: "Montserrat Bold", sans-serif;
+                font-size: 1.125rem;
+                color: #222;
+                padding-left: 5px;
+                &:hover {
+                    color: black;
+                }
+            }
+
+            .not_online {
+                font-family: "Montserrat", sans-serif;
+                font-size: 1.225rem;
+                color: #4a5568;
+            }
+        }
+
+        &__logout {
+            margin-top: auto;
+        }
+    }
+
+    &__chat {
+        flex: 1; /* This will make the .chat_container__chat take up the maximum available space */
+        display: flex;
+        flex-direction: column;
+        padding: 1.8rem;
+        width: 100%;
+
+        &__title {
+            font-family: "Montserrat Bold";
+            color: #222;
+            border-bottom: #edf2f7 solid 3px;
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        &__messages {
+            flex-grow: 1;
+            overflow-y: scroll;
+            padding: 0.325rem;
+            display: flex;
+            flex-direction: column; /* Added this to make messages stack vertically */
+            margin-bottom: 10px; /* Add some space between messages */
+
+            /* SCROLLBAR STYLE */
+            &::-webkit-scrollbar {
+                width: 0.33rem;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f2eeeb;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #1a1a1a;
+            }
+        }
+    }
+}
+/* Styling for the send message form */
+.send_message_form {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+
+    &__input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        background-color: #f0f0f0;
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        color: #333;
+        outline: none;
+
+        &::placeholder {
+            color: #bbb;
+        }
+    }
+
+    &__button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        background-color: #222; /* Updated button color to black */
+        font-family: "Montserrat SemiBold", sans-serif;
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #222; /* Updated hover color to a darker shade of black */
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &.loading {
+            cursor: not-allowed; /* Disable cursor on loading state */
+            opacity: 0.8; /* Reduce opacity on loading state */
+            transform: scale(0.95); /* Slightly scale down on loading state */
+
+            &::after {
+                content: "Sending..."; /* Display loading text */
+                margin-left: 10px; /* Add some space between text and spinner */
+            }
+        }
+    }
+
+    /* Keyframes for spinner animation */
+    @keyframes spinner {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Styles for the spinner inside the loading button */
+    .send_message_form__button.loading::after {
+        content: "";
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid transparent;
+        border-top-color: #fff; /* Color of the spinner */
+        border-radius: 50%;
+        animation: spinner 0.8s linear infinite; /* Apply the spinner animation */
+        margin-left: 10px; /* Add some space between text and spinner */
+    }
+}

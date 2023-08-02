@@ -1,0 +1,59 @@
+/* Styling for the messages using the custom fonts */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    max-width: 50%;
+
+    &.ownMessage {
+        align-self: flex-end; /* Align messages you own to the right */
+        margin-left: auto; /* Push messages you own to the right */
+    }
+
+    &__chat_sender {
+        font-family: "Montserrat SemiBold", sans-serif; /* Use the custom font */
+        font-size: 0.8rem;
+        font-weight: normal;
+        color: #bbb;
+        margin-bottom: 4px;
+    }
+
+    &__inner_container {
+        display: flex; /* Add display flex */
+        flex-direction: column; /* Add flex-direction column */
+        justify-content: space-between; /* Add justify-content space-between */
+        min-width: 13vw;
+        background-color: #222;
+        border-radius: 10px;
+        padding: 0.595rem;
+        color: #fff;
+        font-family: "Montserrat", sans-serif; /* Use the custom font */
+        font-size: 0.935rem;
+        font-weight: 500;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Move box-shadow to the inner container */
+        transition: transform 0.2s ease-in-out; /* Move transition to the inner container */
+
+        &.ownMessage {
+            background-color: #113bd6; /* Set background color for owned messages */
+        }
+    }
+
+    &__message_content {
+        font-family: "Montserrat Medium", sans-serif; /* Use the custom font */
+        font-size: 0.875rem;
+        word-break: break-word; /* Wrap long content to new lines */
+    }
+
+    &__time {
+        font-family: "Montserrat Light", sans-serif; /* Use the custom font for the time */
+        font-size: 0.65rem;
+        white-space: nowrap; /* Prevent the time from wrapping */
+        align-self: flex-end;
+        color: #808080; /* Default color for the time */
+
+        &.ownedTime {
+            color: white; /* Son Goku orange for owned messages */
+        }
+    }
+}
