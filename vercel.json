@@ -2,8 +2,11 @@
     "routes": [
         {
             "src": "/graphql",
-            "methods": ["POST", "GET"],
-            "dest": "api/index.js"
+            "methods": ["POST", "GET", "OPTIONS"],
+            "dest": "api/index.js",
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            }
         }
     ]
 }
