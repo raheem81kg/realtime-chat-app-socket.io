@@ -1,3 +1,4 @@
+// to be hosted on Render.com
 require("dotenv").config();
 const io = require("socket.io")(8900, {
     cors: {
