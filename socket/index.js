@@ -1,4 +1,5 @@
-require("dotenv").config({ path: "../.env" });
+// hosted on Render.com
+https: require("dotenv").config();
 const io = require("socket.io")(8900, {
     cors: {
         origin: process.env.REACT_APP_URL,
