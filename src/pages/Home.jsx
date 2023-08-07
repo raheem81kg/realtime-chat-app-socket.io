@@ -33,7 +33,8 @@ const Home = () => {
 
     useEffect(() => {
         // connect to socket
-        setSocket(io(import.meta.env.VITE_SOCKET_URI));
+        // setSocket(io(import.meta.env.VITE_SOCKET_URI));
+        setSocket(io("ws://localhost:8900"));
 
         // Cleanup function to disconnect the socket when the component unmounts
         return () => {

@@ -5,14 +5,18 @@ const server = require("http").createServer(app);
 const cors = require("cors");
 require("dotenv").config();
 
-// Set up CORS configuration
-const corsOptions = {
-    origin: "https://realtime-chat-app-frontend.onrender.com", // Replace with your actual frontend URL
-};
+app.use(cors({ origin: "*" }));
 
-app.use(cors(corsOptions));
+app.get("/", (req, res) => {
+    res.send("Hello, World!");
+});
 
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, {
+    cors: {
+        origin: process.env.REACT_APP_URL,
+        methods: ["GET", "POST"],
+    },
+});
 
 let users = [];
 
@@ -83,7 +87,7 @@ io.on("connection", (socket) => {
     });
 });
 
-const PORT = process.env.SOCKET_PORT || 8900;
+const PORT = process.env.SOCKET_PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
