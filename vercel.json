@@ -1,9 +1,9 @@
 {
     "routes": [
         {
-            "src": "/api/checkout",
+            "src": "/graphql",
             "methods": ["POST", "GET"],
-            "dest": "api/server.js"
+            "dest": "api/index.js"
         }
     ]
 }

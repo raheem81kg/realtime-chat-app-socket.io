@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 const io = require("socket.io")(8900, {
     cors: {
         origin: process.env.REACT_APP_URL,
