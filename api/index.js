@@ -11,7 +11,8 @@ const app = express();
 // connect to Database
 connectDb();
 
-app.use(cors());
+// Configure CORS to allow requests from any origin
+app.use(cors({ origin: "*" }));
 
 app.use(
     "/graphql",
