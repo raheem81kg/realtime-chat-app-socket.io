@@ -7,18 +7,7 @@ export default defineConfig({
     server: {
         port: 3000,
         proxy: {
-            "/graphql": {
-                target: "https://realtime-chat-app-raheem81kg.vercel.app/graphql",
-                changeOrigin: true,
-                secure: true,
-                ws: false,
-            },
-            "/socket.io": {
-                target: "https://realtime-chat-app-gxyp.onrender.com",
-                changeOrigin: true,
-                secure: true,
-                ws: true,
-            },
+            "/graphql": "http://localhost:5000",
         },
     },
 });
