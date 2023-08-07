@@ -1,10 +1,18 @@
 // hosted on Render.com
-https: require("dotenv").config();
-const io = require("socket.io")(8900, {
-    cors: {
-        origin: process.env.REACT_APP_URL,
-    },
-});
+const express = require("express");
+const app = express();
+const server = require("http").createServer(app);
+const cors = require("cors");
+require("dotenv").config();
+
+// Set up CORS configuration
+const corsOptions = {
+    origin: "https://realtime-chat-app-frontend.onrender.com", // Replace with your actual frontend URL
+};
+
+app.use(cors(corsOptions));
+
+const io = require("socket.io")(server);
 
 let users = [];
 
@@ -73,4 +81,9 @@ io.on("connection", (socket) => {
             // ...
         }
     });
+});
+
+const PORT = process.env.SOCKET_PORT || 8900;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
