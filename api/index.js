@@ -14,14 +14,6 @@ connectDb();
 
 app.use(cors());
 
-// Apply rate limiting middleware
-const limiter = rateLimit({
-    windowMs: 60 * 1000, // 1 minute
-    max: 100, // Limit each IP to 100 requests per windowMs
-});
-
-app.use(limiter);
-
 app.use(
     "/graphql",
     graphqlHTTP({
