@@ -33,5 +33,5 @@
         "sass": "^1.63.6",
         "vite": "^4.3.9"
     },
-    "proxy": "http://localhost:3001"
+    "proxy": "https://realtime-chat-app-raheem81kg.vercel.app/"
 }
