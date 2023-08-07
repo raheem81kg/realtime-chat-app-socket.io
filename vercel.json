@@ -3,10 +3,7 @@
         {
             "src": "/graphql",
             "methods": ["POST", "GET", "OPTIONS"],
-            "dest": "api/index.js",
-            "headers": {
-                "Access-Control-Allow-Origin": "*"
-            }
+            "dest": "api/index.js"
         }
     ]
 }
