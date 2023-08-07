@@ -5,7 +5,6 @@ require("dotenv").config({ path: "../.env" });
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
 const connectDb = require("./config/db");
-const rateLimit = require("express-rate-limit");
 
 const app = express();
 
