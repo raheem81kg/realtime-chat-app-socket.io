@@ -34,8 +34,6 @@ const Home = () => {
     useEffect(() => {
         // connect to socket
         setSocket(io(import.meta.env.VITE_SOCKET_URI));
-        // setSocket(io("ws://realtime-chat-app-frontend.onrender.com:8900"));
-        // setSocket(io("ws://localhost:8900"));
 
         // Cleanup function to disconnect the socket when the component unmounts
         return () => {
@@ -208,8 +206,10 @@ const Home = () => {
     useEffect(() => {
         const container = containerScrollRef?.current;
 
-        if (container) {
+        if (container && currentChat) {
             container.scrollTop = container?.scrollHeight;
+        } else {
+            container.scrollTop = 0; // Scroll to the top when conditions are not met
         }
     }, [messageData, messageLoading]);
 

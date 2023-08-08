@@ -86,7 +86,7 @@
 }
 
 .chat_container {
-    height: 100svh;
+    height: 100vh;
     max-width: 100%;
     display: flex;
 
@@ -129,6 +129,7 @@
                 font-size: 1.125rem;
                 color: #222;
                 padding-left: 5px;
+                margin-bottom: 4px;
                 &:hover {
                     color: black;
                 }
