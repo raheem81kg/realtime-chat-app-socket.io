@@ -108,7 +108,7 @@
 
     &__menu {
         min-width: 30%;
-        height: 100dvh;
+        height: 100%;
         padding: 1.8rem;
         display: flex;
         flex-direction: column;
@@ -135,8 +135,8 @@
                 }
             }
 
-            .no_chat {
-                margin-top: 200px;
+            .not_online {
+                margin-top: 20px;
                 font-family: "Montserrat", sans-serif;
                 font-size: 1.225rem;
                 color: #4a5568;
@@ -258,5 +258,12 @@
         border-radius: 50%;
         animation: spinner 0.8s linear infinite; /* Apply the spinner animation */
         margin-left: 10px; /* Add some space between text and spinner */
+    }
+}
+
+@media (max-width: 768px) {
+    .no_chat {
+        margin: auto;
+        font-size: 1.03rem;
     }
 }
