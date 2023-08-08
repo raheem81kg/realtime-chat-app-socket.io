@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import PuffLoader from "react-spinners/PuffLoader";
@@ -44,6 +44,12 @@ const Login = () => {
     const handleNameChange = (e) => {
         setLoginName(e.target.value);
     };
+
+    useEffect(() => {
+        // Change the URL to the root path when the component mounts
+        // this is to prevent servers giving error when you reload on /login
+        window.history.pushState({}, "", "/");
+    }, []);
 
     return !user ? (
         <div>
