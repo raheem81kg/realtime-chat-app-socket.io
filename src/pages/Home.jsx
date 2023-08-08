@@ -437,7 +437,7 @@ const Home = () => {
                         </form>
                     </>
                 ) : (
-                    <div className={styles.not_online}> Open a conversation to start a chat...</div>
+                    <div className={styles.no_chat}> Open a conversation to start a chat...</div>
                 )}
             </div>
         </div>
