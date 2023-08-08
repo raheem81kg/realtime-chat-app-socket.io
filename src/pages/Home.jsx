@@ -208,7 +208,7 @@ const Home = () => {
 
         if (container && currentChat) {
             container.scrollTop = container?.scrollHeight;
-        } else {
+        } else if (container) {
             container.scrollTop = 0; // Scroll to the top when conditions are not met
         }
     }, [messageData, messageLoading]);
