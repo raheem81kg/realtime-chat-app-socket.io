@@ -15,7 +15,7 @@ Then `cd` to the top directory of this app, and run `npm install` then `npm run 
 -   Mobile responsive
 -   Instant messaging and notifications
 -   Chat rooms
--   Messages stored in MongoDB and cached with Redis
+-   Messages stored and cached in databases
 -   Clean user interface with smooth animations using Framer Motion
 
 ## Screenshots
@@ -38,14 +38,6 @@ Then `cd` to the top directory of this app, and run `npm install` then `npm run 
 
 ## Development
 
-### Features
-
--   Mobile responsive
--   Instant messaging and notifications
--   Chat rooms
--   Messages stored in MongoDB and cached with Redis
--   Clean user interface with smooth animations using Framer Motion
-
 ### Web Framework
 -   React
 -   Express
@@ -53,6 +45,7 @@ Then `cd` to the top directory of this app, and run `npm install` then `npm run 
 ### Tools
 
 -   Socket.io
--   MondgoDB for the backend
+-   MondgoDB
 -   Redis
 -   GraphQL
+-   ContextAPI
