@@ -6,7 +6,7 @@ A shopping website where you can add items to cart and checkout with stripe
 
 It is deployed here on Vercel: <a href="https://realtime-chat-app-frontend.onrender.com">https://realtime-chat-app-frontend.onrender.com/</a>
 
-To start the Express.js backend, `cd` to the `api` directory of this app and run `npm install` then `node index.js` .
+To start the Express.js backends, `cd` to the `api` and `socket` directory of this app and run `npm install` then `node index.js` .
 
 Then `cd` to the top directory of this app, and run `npm install` then `npm run dev`. This will start the React.js frontend.
 
