@@ -1,11 +1,16 @@
 const { RateLimiterMemory } = require("rate-limiter-flexible");
 
-export const addMessageLimit = new RateLimiterMemory({
+const addMessageLimit = new RateLimiterMemory({
    points: 2,
    duration: 1,
 });
 
-export const addChat = new RateLimiterMemory({
+const addMemberLimit = new RateLimiterMemory({
    points: 2,
    duration: 1,
 });
+
+module.exports = {
+   addMessageLimit,
+   addMemberLimit,
+};

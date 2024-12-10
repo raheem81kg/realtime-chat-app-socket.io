@@ -4,7 +4,7 @@ const Message = require("../models/Message");
 const UnreadMessage = require("../models/UnreadMessage");
 const Filter = require("bad-words");
 const Redis = require("ioredis");
-import { addMessageLimit } from "../ratelimit";
+const { addMessageLimit, addMemberLimit } = require("./ratelimit");
 
 // I set up SLL in redis so the extra "s" in "rediss" is very important.
 const redisClient = new Redis(process.env.REDIS_URL);
@@ -223,7 +223,7 @@ const mutation = new GraphQLObjectType({
          },
          resolve: async (parent, args) => {
             try {
-               await addMessageLimit.consume({ sender: args.sender, chatId: args.chatId }, 1);
+               await addMemberLimit.consume({ sender: args.sender, chatId: args.chatId }, 1);
                // Find the chat by chatId
                const chat = await Chat.findById(args.chatId);
 
