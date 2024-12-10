@@ -5,18 +5,12 @@ const UnreadMessage = require("../models/UnreadMessage");
 // const Redis = require("ioredis");
 const { addMessageLimit, addMemberLimit } = require("../ratelimit");
 
-// Dynamically import bad-words package
-let Filter;
-let filter;
+let badWords;
 (async () => {
-   const module = await import("bad-words");
-   Filter = module.default;
-   filter = new Filter();
+   const badwordsList = await import("badwords-list");
+   badWords = new Set(badwordsList.array);
 })();
 
-// I set up SLL in redis so the extra "s" in "rediss" is very important.
-// const redisClient = new Redis(process.env.REDIS_URL);
-// Initialize bad words filter
 const {
    GraphQLObjectType,
    GraphQLID,
@@ -27,6 +21,12 @@ const {
    GraphQLInputObjectType,
    GraphQLInt,
 } = require("graphql");
+
+// Function to check for profanity
+const isProfane = (text) => {
+   const words = text.split(/\s+/);
+   return words.some((word) => badWords.has(word.toLowerCase()));
+};
 
 // Chat Type
 const ChatType = new GraphQLObjectType({
@@ -178,9 +178,7 @@ const RootQuery = new GraphQLObjectType({
          type: GraphQLInt,
          args: { chatId: { type: GraphQLNonNull(GraphQLID) }, receiver: { type: GraphQLNonNull(GraphQLString) } },
          resolve(parent, args) {
-            // returning chats with a certain member in it
             return UnreadMessage.countDocuments({ chatId: args.chatId, receiver: args.receiver });
-            // return unreadMessages.filter((message) => message.chatId === args.chatId);
          },
       },
    },
@@ -220,7 +218,8 @@ const mutation = new GraphQLObjectType({
                throw new Error("Failed to save chat.");
             }
          },
-      }, // Add a member to a chat
+      },
+      // Add a member to a chat
       addMember: {
          type: ChatType,
          args: {
@@ -268,7 +267,7 @@ const mutation = new GraphQLObjectType({
                await addMessageLimit.consume(args.sender, 1);
 
                // Check for offensive language in the message
-               if (filter.isProfane(args.message)) {
+               if (isProfane(args.message)) {
                   throw new Error("Message contains inappropriate language and cannot be sent.");
                }
 

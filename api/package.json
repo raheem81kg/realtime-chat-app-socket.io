@@ -12,6 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "bad-words": "^4.0.0",
+        "badwords-list": "^2.0.1-4",
         "colors": "^1.4.0",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
