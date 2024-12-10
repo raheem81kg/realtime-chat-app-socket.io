@@ -88,28 +88,32 @@ const RootQuery = new GraphQLObjectType({
          resolve: async (parent, args) => {
             const key = `chats:${args.member}`;
             try {
-               // Attempt to retrieve chats from Redis
-               const cachedChats = await redisClient.get(key);
-               if (cachedChats) {
-                  // Transform the cached chats to match the frontend's expectation
-                  return JSON.parse(cachedChats).map((chat) => {
-                     const { _id, ...rest } = chat;
-                     return { id: _id, ...rest };
-                  });
-               }
+               /*
+            // Attempt to retrieve chats from Redis
+            const cachedChats = await redisClient.get(key);
+            if (cachedChats) {
+                // Transform the cached chats to match the frontend's expectation
+                return JSON.parse(cachedChats).map((chat) => {
+                    const { _id, ...rest } = chat;
+                    return { id: _id, ...rest };
+                });
+            }
+            */
             } catch (redisError) {
                console.error("Redis error (chats):", redisError.message);
             }
 
-            // Fallback to MongoDB if Redis is unavailable
+            // Fallback to MongoDB directly
             try {
                const chats = await Chat.find({ members: { $in: [args.member] } });
-               try {
-                  // Cache the chats in Redis
-                  await redisClient.setex(key, 3600, JSON.stringify(chats));
-               } catch (cacheError) {
-                  console.error("Failed to cache chats in Redis:", cacheError.message);
-               }
+               /*
+            try {
+                // Cache the chats in Redis
+                await redisClient.setex(key, 3600, JSON.stringify(chats));
+            } catch (cacheError) {
+                console.error("Failed to cache chats in Redis:", cacheError.message);
+            }
+            */
                return chats.map((chat) => ({
                   id: chat._id,
                   ...chat._doc,
@@ -126,27 +130,31 @@ const RootQuery = new GraphQLObjectType({
          resolve: async (parent, args) => {
             const redisKey = `messages:${args.chatId}`;
             try {
-               // Attempt to retrieve messages from Redis
-               const cachedMessages = await redisClient.get(redisKey);
-               if (cachedMessages) {
-                  return JSON.parse(cachedMessages).map((message) => {
-                     const { _id, ...rest } = message;
-                     return { id: _id, ...rest };
-                  });
-               }
+               /*
+            // Attempt to retrieve messages from Redis
+            const cachedMessages = await redisClient.get(redisKey);
+            if (cachedMessages) {
+                return JSON.parse(cachedMessages).map((message) => {
+                    const { _id, ...rest } = message;
+                    return { id: _id, ...rest };
+                });
+            }
+            */
             } catch (redisError) {
                console.error("Redis error (messages):", redisError.message);
             }
 
-            // Fallback to MongoDB if Redis is unavailable
+            // Fallback to MongoDB directly
             try {
                const messages = await Message.find({ chatId: args.chatId });
-               try {
-                  // Cache the messages in Redis
-                  await redisClient.setex(redisKey, 3600, JSON.stringify(messages));
-               } catch (cacheError) {
-                  console.error("Failed to cache messages in Redis:", cacheError.message);
-               }
+               /*
+            try {
+                // Cache the messages in Redis
+                await redisClient.setex(redisKey, 3600, JSON.stringify(messages));
+            } catch (cacheError) {
+                console.error("Failed to cache messages in Redis:", cacheError.message);
+            }
+            */
                return messages.map((message) => ({
                   id: message._id,
                   ...message._doc,
