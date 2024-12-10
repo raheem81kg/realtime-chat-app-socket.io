@@ -4,12 +4,14 @@ const Message = require("../models/Message");
 const UnreadMessage = require("../models/UnreadMessage");
 // const Redis = require("ioredis");
 const { addMessageLimit, addMemberLimit } = require("../ratelimit");
+
 // Dynamically import bad-words package
 let Filter;
+let filter;
 (async () => {
    const module = await import("bad-words");
    Filter = module.default;
-   const filter = new Filter();
+   filter = new Filter();
 })();
 
 // I set up SLL in redis so the extra "s" in "rediss" is very important.
