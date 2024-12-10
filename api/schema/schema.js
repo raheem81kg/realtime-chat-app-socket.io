@@ -2,11 +2,14 @@
 const Chat = require("../models/Chat");
 const Message = require("../models/Message");
 const UnreadMessage = require("../models/UnreadMessage");
-
+import Filter from "bad-words";
 const Redis = require("ioredis");
+import { addMessageLimit } from "../ratelimit";
 
 // I set up SLL in redis so the extra "s" in "rediss" is very important.
 const redisClient = new Redis(process.env.REDIS_URL);
+// Initialize bad words filter
+const filter = new Filter();
 
 const {
    GraphQLObjectType,
@@ -220,6 +223,7 @@ const mutation = new GraphQLObjectType({
          },
          resolve: async (parent, args) => {
             try {
+               await addMessageLimit.consume({ sender: args.sender, chatId: args.chatId }, 1);
                // Find the chat by chatId
                const chat = await Chat.findById(args.chatId);
 
@@ -254,6 +258,14 @@ const mutation = new GraphQLObjectType({
          },
          resolve: async (parent, args) => {
             try {
+               // Apply rate limiting by sender
+               await addMessageLimit.consume(args.sender, 1);
+
+               // Check for offensive language in the message
+               if (filter.isProfane(args.message)) {
+                  throw new Error("Message contains inappropriate language and cannot be sent.");
+               }
+
                const message = new Message({
                   chatId: args.chatId,
                   sender: args.sender,
