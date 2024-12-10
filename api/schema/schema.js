@@ -2,15 +2,17 @@
 const Chat = require("../models/Chat");
 const Message = require("../models/Message");
 const UnreadMessage = require("../models/UnreadMessage");
-const Filter = require("bad-words");
-const Redis = require("ioredis");
-const { addMessageLimit, addMemberLimit } = require("./ratelimit");
+// const Redis = require("ioredis");
+const { addMessageLimit, addMemberLimit } = require("../ratelimit");
+let filter;
+(async () => {
+   const { default: Filter } = await import("bad-words");
+   filter = new Filter();
+})();
 
 // I set up SLL in redis so the extra "s" in "rediss" is very important.
 // const redisClient = new Redis(process.env.REDIS_URL);
 // Initialize bad words filter
-const filter = new Filter();
-
 const {
    GraphQLObjectType,
    GraphQLID,

@@ -15,11 +15,11 @@ connectDb();
 app.use(cors({ origin: "*" }));
 
 app.use(
-    "/graphql",
-    graphqlHTTP({
-        schema,
-        graphiql: process.env.NODE_ENV === "development",
-    })
+   "/graphql",
+   graphqlHTTP({
+      schema,
+      graphiql: process.env.NODE_ENV === "development",
+   })
 );
 
 const PORT = process.env.API_PORT || 5000;
