@@ -7,7 +7,7 @@ const Redis = require("ioredis");
 const { addMessageLimit, addMemberLimit } = require("./ratelimit");
 
 // I set up SLL in redis so the extra "s" in "rediss" is very important.
-const redisClient = new Redis(process.env.REDIS_URL);
+// const redisClient = new Redis(process.env.REDIS_URL);
 // Initialize bad words filter
 const filter = new Filter();
 
