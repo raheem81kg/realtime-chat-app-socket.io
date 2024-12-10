@@ -1,4 +1,4 @@
-import { RateLimiterMemory } from require("rate-limiter-flexible");
+const { RateLimiterMemory } = require("rate-limiter-flexible");
 
 export const addMessageLimit = new RateLimiterMemory({
    points: 2,

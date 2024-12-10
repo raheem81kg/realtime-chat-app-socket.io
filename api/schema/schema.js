@@ -2,7 +2,7 @@
 const Chat = require("../models/Chat");
 const Message = require("../models/Message");
 const UnreadMessage = require("../models/UnreadMessage");
-import Filter from require("bad-words");
+const Filter = require("bad-words");
 const Redis = require("ioredis");
 import { addMessageLimit } from "../ratelimit";
 
